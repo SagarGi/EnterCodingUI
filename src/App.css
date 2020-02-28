@@ -1,0 +1,133 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.main-div {
+    height: 100%;
+    width: 100%;
+}
+
+.main-body {
+    background-color: blue;
+    height: 100%;
+    width: 100%;
+}
+
+.top-menu-bar {
+    height: 50px;
+    background-color: black;
+    width: 100%;
+}
+
+.leftside,
+.rightside {
+    height: 50vh;
+    width: 100%;
+}
+
+.leftside {
+    background-color: #141414;
+     border:black;
+    border-width: 0.5px;
+    border-style: solid;
+}
+
+.rightside {
+    background-color: #141414;
+    border:black;
+    border-width: 0.5px;
+    border-style: solid;
+}
+
+.ace-editor {
+    height: 93%;
+}
+
+.run {
+    height: 38px;
+    width: 100px;
+    background-color: green;
+    justify-content: center;
+    color: white;
+    border: 0;
+    display: flex;
+    margin-right: 15px;
+    border-radius: 7px;
+}
+
+.output {
+    height: 38px;
+    width: 100px;
+    background-color: grey;
+    justify-content: center;
+    color: white;
+    border: 0;
+    display: flex;
+    margin-left: 15px;
+    border-radius: 7px;
+}
+
+.top-bar {
+    height: 7%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color:black;
+}
+
+.top-bar-right {
+    height: 7%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: black;
+}
+.drop-down {
+    width: 120px;
+    border-radius: 7px;
+    margin-right: 15px;
+}
+
+@media screen and (min-width:768px) {
+    .leftside,
+    .rightside {
+        height: 100vh;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
