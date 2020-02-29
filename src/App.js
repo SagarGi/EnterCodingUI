@@ -14,9 +14,14 @@ import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/theme-github";
 import Select from "react-select"
 
+// options and values for the select
 const options = [{ value: 'c', label: 'C' },
 { value: 'cpp', label: 'CPP' }, { value: 'java', label: 'JAVA' }
 ]
+
+
+
+
 
 class App extends Component {
   constructor() {
@@ -74,71 +79,26 @@ class App extends Component {
   };
 
   render() {
+    const customStyles = {
+      control: base => ({
+        ...base,
+        minHeight: 20
+      }),
+      dropdownIndicator: base => ({
+        ...base,
+        padding: 3
+      }),
+
+      input: base => ({
+        ...base,
+        margin: 0,
+        padding: 0
+      })
+    };
+
+
     return (
-      //   <div className="main-body">
-      //     <div className="top-menu-bar"></div>
-      //     <div className="code-editor">
-      //       <AceEditor
-      //         className="aceditor"
-      //         ref="ace"
-      //         mode="java"
-      //         theme="terminal"
-      //         name="codeditor"
-      //         onLoad={this.onLoad}
-      //         value={this.state.code}
-      //         onChange={this.handleCodeChange}
-      //         fontSize={16}
-      //         showPrintMargin={true}
-      //         showGutter={true}
-      //         highlightActiveLine={true}
-      //         setOptions={{
-      //           enableBasicAutocompletion: true,
-      //           enableLiveAutocompletion: true,
-      //           enableSnippets: false,
-      //           showLineNumbers: true,
-      //           tabSize: 2
-      //         }}
-      //         commands={[
-      //           {
-      //             name: "commandName",
-      //             bindKey: { win: "Ctrl-enter", mac: "Command-enter" },
-      //             exec: () => {
-      //               this.handleSubmit();
-      //             }
-      //           }
-      //         ]}
-      //       // height="731px"
-      //       // width="800px"
-      //       />
-      //     </div>
-      //     <div className="bottom-menu-bar">
-      //       <button
-      //         style={{
-      //           height: "40px",
-      //           width: "100px",
-      //           backgroundColor: "green",
-      //           color: "white",
-      //           marginLeft: "5px",
-      //           border: 0,
-      //           borderRadius: 7,
-      //           display: "flex",
-      //           justifyContent: "center"
-      //         }}
-      //         onClick={this.handleSubmit}
-      //         disabled={this.state.submit}
-      //       >
-      //         {this.state.submit && (
-      //           <ReactLoading
-      //             type="spokes"
-      //             color="#fff"
-      //             height="25px"
-      //             width="25px"
-      //           />
-      //         )}
-      //         {!this.state.submit && <span>Run</span>}
-      //       </button>
-      //     </div>
-      //   </div>
+
       <div>
         <div className="main-div">
           <div className="row no-gutters">
@@ -152,6 +112,12 @@ class App extends Component {
                     value={this.state.language}
                     onChange={this.handleChange}
                     options={options}
+                    styles={customStyles}
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 7 // to make same border as the run button
+                    })}
+
                   />
 
                   <button

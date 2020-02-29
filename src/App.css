@@ -70,7 +70,7 @@
 }
 
 .run {
-    height: 38px;
+    height: 32px;
     width: 100px;
     background-color: green;
     justify-content: center;
@@ -82,7 +82,7 @@
 }
 
 .output {
-    height: 38px;
+    height: 32px;
     width: 100px;
     background-color: grey;
     justify-content: center;
