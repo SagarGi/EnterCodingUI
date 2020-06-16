@@ -1,17 +1,13 @@
-.leftside , .rightside
+.leftside
 {
     height: 100vh;
     width: 100%;
 }
 
-.leftside
-{
-    background-color: red;
-}
-
 .rightside
 {
-    background-color: blue;
+height: 100vh;
+    width: 100%;
 }
 
 .topbar1 , .topbar2
@@ -21,6 +17,52 @@
     width: 100%;
 }
 
+.drop-down {
+    width: 120px;
+    border-radius: 7px;
+    margin-right: 15px;
+}
+
+.ace-editor {
+    height: 95%;
+}
+
+
+.output {
+    height: 32px;
+    width: 100px;
+    background-color: grey;
+    justify-content: center;
+    color: white;
+    border: 0;
+    display: flex;
+    margin-left: 15px;
+    border-radius: 7px;
+}
+
+.run {
+    height: 32px;
+    width: 100px;
+    background-color: green;
+    justify-content: center;
+    color: white;
+    border: 0;
+    display: flex;
+    margin-right: 15px;
+    border-radius: 7px;
+}
+
+.topbar1
+{
+
+}
+
+.select, .button
+{
+
+    float: right;
+}
+
 
 @media only screen and (max-width: 768px) {
     .leftside , .rightside
@@ -28,6 +70,11 @@
             height: 50vh;
             width: 100%;
         }
+        .ace-editor {
+            height: 90%;
+        }
+
+       
   }
 
 

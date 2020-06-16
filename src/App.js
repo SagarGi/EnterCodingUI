@@ -101,8 +101,80 @@ class App extends Component {
 
               <div className = "leftside">
                 <div className = "topbar1">
+                 <div className = "button">
+                 <button
+                    className="run"
 
+                    onClick={this.handleSubmit}
+                    disabled={this.state.submit}
+                  >
+                    {this.state.submit && (
+                      <ReactLoading
+                        type="spokes"
+                        color="#fff"
+                        height="25px"
+                        width="25px"
+                      />
+                    )}
+                    {!this.state.submit && <span>Run</span>}
+                  </button>
+                 </div>
+
+                 <div className = "select">
+                 <Select className="drop-down"
+                    value={this.state.language}
+                    onChange={this.handleChange}
+                    options={options}
+                    styles={customStyles}
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 7 // to make same border as the run button
+                    })}
+
+                  />
+                 </div>
                 </div>
+
+
+                {/* editor */}
+
+                <div className="ace-editor">
+               <AceEditor
+                    ref="ace"
+                    mode="java"
+                    theme="twilight"
+                    name="codeditor"
+                    height="100%"
+                    width="inherit"
+                    onLoad={this.onLoad}
+                    value={this.state.code}
+                    onChange={this.handleCodeChange}
+                    fontSize={18}
+                    showPrintMargin={true}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    setOptions={{
+                      enableBasicAutocompletion: true,
+                      enableLiveAutocompletion: true,
+                      enableSnippets: false,
+                      showLineNumbers: true,
+                      tabSize: 2
+                    }}
+                    commands={[
+                      {
+                        name: "commandName",
+                        bindKey: { win: "Ctrl-enter", mac: "Command-enter" },
+                        exec: () => {
+                          this.handleSubmit();
+                        }
+                      }
+                    ]}
+                  />
+                </div>
+
+
+
+
               </div>
 
           </div>
