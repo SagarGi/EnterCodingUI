@@ -1,0 +1,33 @@
+.leftside , .rightside
+{
+    height: 100vh;
+    width: 100%;
+}
+
+.leftside
+{
+    background-color: red;
+}
+
+.rightside
+{
+    background-color: blue;
+}
+
+.topbar1 , .topbar2
+{
+    height: 5vh;
+    background-color: black;
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .leftside , .rightside
+        {
+            height: 50vh;
+            width: 100%;
+        }
+  }
+
+

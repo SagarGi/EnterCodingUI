@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./entercoding.css";
+import "./newcss.css";
 import axios from "axios";
 import AceEditor from "react-ace";
 import ReactLoading from "react-loading";
@@ -18,10 +19,6 @@ import Select from "react-select"
 const options = [{ value: 'c', label: 'C' },
 { value: 'cpp', label: 'CPP' }, { value: 'java', label: 'JAVA' }
 ]
-
-
-
-
 
 class App extends Component {
   constructor() {
@@ -96,103 +93,134 @@ class App extends Component {
       })
     };
 
+    return(
+      
+      <div className = "row no-gutters">
 
-    return (
+          <div className = "col-lg-6 no-gutters">
 
-      <div>
-        <div className="main-div">
-          <div className="row no-gutters">
-            <div className="col-md-6 no-gutters">
-
-              <div className="leftside ">
-                {/* <div className="code-editor"> */}
-                <div className="top-bar">
-
-                  <Select className="drop-down"
-                    value={this.state.language}
-                    onChange={this.handleChange}
-                    options={options}
-                    styles={customStyles}
-                    theme={(theme) => ({
-                      ...theme,
-                      borderRadius: 7 // to make same border as the run button
-                    })}
-
-                  />
-
-                  <button
-                    className="run"
-
-                    onClick={this.handleSubmit}
-                    disabled={this.state.submit}
-                  >
-                    {this.state.submit && (
-                      <ReactLoading
-                        type="spokes"
-                        color="#fff"
-                        height="25px"
-                        width="25px"
-                      />
-                    )}
-                    {!this.state.submit && <span>Run</span>}
-                  </button>
-                </div>
-
-                <div className="ace-editor">
-                  <AceEditor
-                    ref="ace"
-                    mode="java"
-                    theme="twilight"
-                    name="codeditor"
-                    height="100%"
-                    width="inherit"
-                    onLoad={this.onLoad}
-                    value={this.state.code}
-                    onChange={this.handleCodeChange}
-                    fontSize={18}
-                    showPrintMargin={true}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    setOptions={{
-                      enableBasicAutocompletion: true,
-                      enableLiveAutocompletion: true,
-                      enableSnippets: false,
-                      showLineNumbers: true,
-                      tabSize: 2
-                    }}
-                    commands={[
-                      {
-                        name: "commandName",
-                        bindKey: { win: "Ctrl-enter", mac: "Command-enter" },
-                        exec: () => {
-                          this.handleSubmit();
-                        }
-                      }
-                    ]}
-                  />
-                </div>
-
-              </div>
-            </div>
-
-            <div className="col-md-6 no-gutters">
-              <div className="rightside text-white">
-                <div className="top-bar-right">
-                  <button
-                    className="output"
-                  >
-                    Output
-                  </button>
+              <div className = "leftside">
+                <div className = "topbar1">
 
                 </div>
               </div>
-
-            </div>
 
           </div>
-        </div>
-      </div >
-    );
+
+          <div className = "col-lg-6 no-gutters">
+
+              <div className = "rightside">
+
+                 <div className = "topbar2">
+                    
+                </div>
+
+              </div>
+
+          </div>
+
+      </div>
+       
+     
+    )
   }
+
+
+  //   return (
+  //     <div>
+  //       <div className="main-div">
+  //         <div className="row no-gutters">
+  //           <div className="col-md-6 no-gutters">
+
+  //             <div className="leftside ">
+  //               {/* <div className="code-editor"> */}
+  //               <div className="top-bar">
+
+  //                 <Select className="drop-down"
+  //                   value={this.state.language}
+  //                   onChange={this.handleChange}
+  //                   options={options}
+  //                   styles={customStyles}
+  //                   theme={(theme) => ({
+  //                     ...theme,
+  //                     borderRadius: 7 // to make same border as the run button
+  //                   })}
+
+  //                 />
+
+  //                 <button
+  //                   className="run"
+
+  //                   onClick={this.handleSubmit}
+  //                   disabled={this.state.submit}
+  //                 >
+  //                   {this.state.submit && (
+  //                     <ReactLoading
+  //                       type="spokes"
+  //                       color="#fff"
+  //                       height="25px"
+  //                       width="25px"
+  //                     />
+  //                   )}
+  //                   {!this.state.submit && <span>Run</span>}
+  //                 </button>
+  //               </div>
+
+  //               <div className="ace-editor">
+  //                 <AceEditor
+  //                   ref="ace"
+  //                   mode="java"
+  //                   theme="twilight"
+  //                   name="codeditor"
+  //                   height="100%"
+  //                   width="inherit"
+  //                   onLoad={this.onLoad}
+  //                   value={this.state.code}
+  //                   onChange={this.handleCodeChange}
+  //                   fontSize={18}
+  //                   showPrintMargin={true}
+  //                   showGutter={true}
+  //                   highlightActiveLine={true}
+  //                   setOptions={{
+  //                     enableBasicAutocompletion: true,
+  //                     enableLiveAutocompletion: true,
+  //                     enableSnippets: false,
+  //                     showLineNumbers: true,
+  //                     tabSize: 2
+  //                   }}
+  //                   commands={[
+  //                     {
+  //                       name: "commandName",
+  //                       bindKey: { win: "Ctrl-enter", mac: "Command-enter" },
+  //                       exec: () => {
+  //                         this.handleSubmit();
+  //                       }
+  //                     }
+  //                   ]}
+  //                 />
+  //               </div>
+
+  //             </div>
+  //           </div>
+
+  //           <div className="col-md-6 no-gutters">
+  //             <div className="rightside text-white">
+  //               <div className="top-bar-right">
+  //                 <button
+  //                   className="output"
+  //                 >
+  //                   Output
+  //                 </button>
+
+  //               </div>
+  //             </div>
+
+  //           </div>
+
+  //         </div>
+  //       </div>
+  //     </div >
+  //   );
+  // }
 }
 export default App;
