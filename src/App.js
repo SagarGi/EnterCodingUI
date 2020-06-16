@@ -83,7 +83,7 @@ class App extends Component {
       }),
       dropdownIndicator: base => ({
         ...base,
-        padding: 3
+        padding: 1
       }),
 
       input: base => ({
@@ -101,24 +101,7 @@ class App extends Component {
 
               <div className = "leftside">
                 <div className = "topbar1">
-                 <div className = "button">
-                 <button
-                    className="run"
-
-                    onClick={this.handleSubmit}
-                    disabled={this.state.submit}
-                  >
-                    {this.state.submit && (
-                      <ReactLoading
-                        type="spokes"
-                        color="#fff"
-                        height="25px"
-                        width="25px"
-                      />
-                    )}
-                    {!this.state.submit && <span>Run</span>}
-                  </button>
-                 </div>
+                
 
                  <div className = "select">
                  <Select className="drop-down"
@@ -132,6 +115,26 @@ class App extends Component {
                     })}
 
                   />
+                 </div>
+
+
+                 <div className = "button">
+                 <button
+                    className="run"
+
+                    onClick={this.handleSubmit}
+                    disabled={this.state.submit}
+                  >
+                    {this.state.submit && (
+                      <ReactLoading
+                        type="spokes"
+                        color="#fff"
+                        height="18px"
+                        width="18px"
+                      />
+                    )}
+                    {!this.state.submit && <span>Run</span>}
+                  </button>
                  </div>
                 </div>
 
