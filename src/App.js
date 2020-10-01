@@ -3,7 +3,7 @@ import "./App.css";
 import "./entercoding.css";
 import "./newcss.css";
 import axios from "axios";
-import AceEditor from "react-ace";
+import MonacoEditor from "monaco-react";
 import ReactLoading from "react-loading";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -53,7 +53,7 @@ class App extends Component {
     // console.log(this.state.code);
     //event.preventDefault();
     await axios
-      .post("https://entercoding-api-gces.herokuapp.com/compiler/java", {
+      .post("https://entercoding-api-gces.herokuapp.com/compiler/javascript", {
         code: this.state.code,
         input: this.state.input
       })
@@ -71,6 +71,8 @@ class App extends Component {
         });
       })
       .catch(error => {
+      //when condition false spinner should remove
+        this.setState({ submit: false });
         console.log(error);
       });
   };
@@ -142,9 +144,9 @@ class App extends Component {
                 {/* editor */}
 
                 <div className="ace-editor">
-               <AceEditor
-                    ref="ace"
-                    mode="java"
+               <MonacoEditor
+                    ref="monaco"
+                    mode="javascript"
                     theme="twilight"
                     name="codeditor"
                     height="100%"
@@ -157,7 +159,7 @@ class App extends Component {
                     showGutter={true}
                     highlightActiveLine={true}
                     setOptions={{
-                      enableBasicAutocompletion: true,
+                      enableBasicAutocompletion: false,
                       enableLiveAutocompletion: true,
                       enableSnippets: false,
                       showLineNumbers: true,
@@ -166,7 +168,7 @@ class App extends Component {
                     commands={[
                       {
                         name: "commandName",
-                        bindKey: { win: "Ctrl-enter", mac: "Command-enter" },
+                        bindKey: { win: "Ctrl-r", mac: "Command-r" },
                         exec: () => {
                           this.handleSubmit();
                         }
