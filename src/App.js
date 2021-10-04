@@ -5,7 +5,7 @@ import "./newcss.css";
 import axios from "axios";
 import AceEditor from "react-ace";
 import ReactLoading from "react-loading";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/mode-java";
@@ -13,12 +13,14 @@ import "ace-builds/src-noconflict/theme-terminal";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/theme-github";
-import Select from "react-select"
+import Select from "react-select";
 
 // options and values for the select
-const options = [{ value: 'c', label: 'C' },
-{ value: 'cpp', label: 'CPP' }, { value: 'java', label: 'JAVA' }
-]
+const options = [
+  { value: "c", label: "C" },
+  { value: "cpp", label: "CPP" },
+  { value: "java", label: "JAVA" },
+];
 
 class App extends Component {
   constructor() {
@@ -27,7 +29,7 @@ class App extends Component {
       code: "",
       input: "",
       output: "",
-      submit: false
+      submit: false,
     };
   }
 
@@ -37,29 +39,29 @@ class App extends Component {
   // };
   //-------------------------------------------------------//
   //es6 function to handle change in code and it avoid using bind in the default constructor
-  handleCodeChange = newValue => {
-    this.setState({ code: newValue });
+  handleCodeChange = (val) => {
+    this.setState({ code: val });
   };
 
   //es6 function to handle change in input
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({ input: event.target.value });
   };
 
   //es6 function to handle change on submit which is asynchronous using async await
   //https://entercoding-api-gces.herokuapp.com/compiler/java
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     this.setState({ submit: true });
     // console.log(this.state.code);
     //event.preventDefault();
     await axios
-      .post("https://entercoding-api-gces.herokuapp.com/compiler/java", {
+      .post("https://entercoding-api-gces.herokuapp.com/compiler/nodejs", {
         code: this.state.code,
-        input: this.state.input
+        input: this.state.input,
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
-        this.setState({ submit: false });
+        this.setState({ submit: true });
         this.setState({
           output:
             response.data.output +
@@ -67,82 +69,71 @@ class App extends Component {
             "\nCpu Memory : " +
             response.data.memory +
             "\nExecution Time : " +
-            response.data.cpuTime
+            response.data.cpuTime,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
 
   render() {
     const customStyles = {
-      control: base => ({
+      control: (base) => ({
         ...base,
-        minHeight: 20
+        minHeight: 20,
       }),
-      dropdownIndicator: base => ({
+      dropdownIndicator: (base) => ({
         ...base,
-        padding: 1
+        padding: 1,
       }),
 
-      input: base => ({
+      input: (base) => ({
         ...base,
         margin: 0,
-        padding: 0
-      })
+        padding: 0,
+      }),
     };
 
-    return(
-      
-      <div className = "row no-gutters">
-
-          <div className = "col-lg-6 no-gutters">
-
-              <div className = "leftside">
-                <div className = "topbar1">
-                
-
-                 <div className = "select">
-                 <Select className="drop-down"
+    return (
+      <div>
+        <div className="main-div">
+          <div className="row no-gutters">
+            <div className="col-md-6 no-gutters">
+              <div className="leftside ">
+                {/* <div className="code-editor"> */}
+                <div className="top-bar">
+                  <Select
+                    className="drop-down"
                     value={this.state.language}
                     onChange={this.handleChange}
                     options={options}
                     styles={customStyles}
                     theme={(theme) => ({
                       ...theme,
-                      borderRadius: 7 // to make same border as the run button
+                      borderRadius: 7, // to make same border as the run button
                     })}
-
                   />
-                 </div>
 
-
-                 <div className = "button">
-                 <button
+                  <button
                     className="run"
-
                     onClick={this.handleSubmit}
                     disabled={this.state.submit}
                   >
                     {this.state.submit && (
                       <ReactLoading
                         type="spokes"
-                        color="#fff"
-                        height="18px"
-                        width="18px"
+                        color="#ffffff"
+                        height="215px"
+                        width="215px"
                       />
                     )}
                     {!this.state.submit && <span>Run</span>}
                   </button>
-                 </div>
                 </div>
 
-
-                {/* editor */}
-
                 <div className="ace-editor">
-               <AceEditor
+                  <AceEditor
                     ref="ace"
                     mode="java"
                     theme="twilight"
@@ -161,7 +152,7 @@ class App extends Component {
                       enableLiveAutocompletion: true,
                       enableSnippets: false,
                       showLineNumbers: true,
-                      tabSize: 2
+                      tabSize: 2,
                     }}
                     commands={[
                       {
@@ -169,133 +160,25 @@ class App extends Component {
                         bindKey: { win: "Ctrl-enter", mac: "Command-enter" },
                         exec: () => {
                           this.handleSubmit();
-                        }
-                      }
+                        },
+                      },
                     ]}
                   />
                 </div>
-
-
-
-
               </div>
+            </div>
 
-          </div>
-
-          <div className = "col-lg-6 no-gutters">
-
-              <div className = "rightside">
-
-                 <div className = "topbar2">
-                    
+            <div className="col-md-6 no-gutters">
+              <div className="rightside text-white">
+                <div className="top-bar-right">
+                  <button className="output">Output</button>
                 </div>
-
               </div>
-
+            </div>
           </div>
-
+        </div>
       </div>
-       
-     
-    )
+    );
   }
-
-
-  //   return (
-  //     <div>
-  //       <div className="main-div">
-  //         <div className="row no-gutters">
-  //           <div className="col-md-6 no-gutters">
-
-  //             <div className="leftside ">
-  //               {/* <div className="code-editor"> */}
-  //               <div className="top-bar">
-
-  //                 <Select className="drop-down"
-  //                   value={this.state.language}
-  //                   onChange={this.handleChange}
-  //                   options={options}
-  //                   styles={customStyles}
-  //                   theme={(theme) => ({
-  //                     ...theme,
-  //                     borderRadius: 7 // to make same border as the run button
-  //                   })}
-
-  //                 />
-
-  //                 <button
-  //                   className="run"
-
-  //                   onClick={this.handleSubmit}
-  //                   disabled={this.state.submit}
-  //                 >
-  //                   {this.state.submit && (
-  //                     <ReactLoading
-  //                       type="spokes"
-  //                       color="#fff"
-  //                       height="25px"
-  //                       width="25px"
-  //                     />
-  //                   )}
-  //                   {!this.state.submit && <span>Run</span>}
-  //                 </button>
-  //               </div>
-
-  //               <div className="ace-editor">
-  //                 <AceEditor
-  //                   ref="ace"
-  //                   mode="java"
-  //                   theme="twilight"
-  //                   name="codeditor"
-  //                   height="100%"
-  //                   width="inherit"
-  //                   onLoad={this.onLoad}
-  //                   value={this.state.code}
-  //                   onChange={this.handleCodeChange}
-  //                   fontSize={18}
-  //                   showPrintMargin={true}
-  //                   showGutter={true}
-  //                   highlightActiveLine={true}
-  //                   setOptions={{
-  //                     enableBasicAutocompletion: true,
-  //                     enableLiveAutocompletion: true,
-  //                     enableSnippets: false,
-  //                     showLineNumbers: true,
-  //                     tabSize: 2
-  //                   }}
-  //                   commands={[
-  //                     {
-  //                       name: "commandName",
-  //                       bindKey: { win: "Ctrl-enter", mac: "Command-enter" },
-  //                       exec: () => {
-  //                         this.handleSubmit();
-  //                       }
-  //                     }
-  //                   ]}
-  //                 />
-  //               </div>
-
-  //             </div>
-  //           </div>
-
-  //           <div className="col-md-6 no-gutters">
-  //             <div className="rightside text-white">
-  //               <div className="top-bar-right">
-  //                 <button
-  //                   className="output"
-  //                 >
-  //                   Output
-  //                 </button>
-
-  //               </div>
-  //             </div>
-
-  //           </div>
-
-  //         </div>
-  //       </div>
-  //     </div >
-  //   );
-  // }
 }
 export default App;
